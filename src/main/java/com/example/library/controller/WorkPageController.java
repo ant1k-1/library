@@ -1,2 +1,4 @@
-package com.example.library.controller;public class WorkPageController {
+package com.example.library.controller;
+
+public class WorkPageController {
 }

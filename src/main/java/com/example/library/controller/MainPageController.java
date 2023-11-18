@@ -1,2 +1,4 @@
-package com.example.library.controller;public class MainPageController {
+package com.example.library.controller;
+
+public class MainPageController {
 }

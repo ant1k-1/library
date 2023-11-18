@@ -1,10 +1,15 @@
 package com.example.library.dto;
 
-public record UserDTO(String email,
-                      String login,
-                      String password,
-                      String phone,
-                      Integer status,
-                      ) {
+import java.time.LocalDate;
 
+public record CustomerDTO(String email,
+                          String login,
+                          String password,
+                          String phone,
+                          Integer status,
+                          LocalDate birthDate,
+                          String firstName,
+                          String lastName,
+                          String patronymic,
+                          Integer bookAmount) {
 }

@@ -1,2 +1,4 @@
-package com.example.library.controller;public class AddEditBookPageController {
+package com.example.library.controller;
+
+public class AddEditBookPageController {
 }

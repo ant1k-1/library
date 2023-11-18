@@ -1,2 +1,6 @@
-package com.example.library.dto;public class LoginDTO {
+package com.example.library.dto;
+
+import com.example.library.enums.Role;
+
+public record LoginDTO(Role role, String login, String password) {
 }

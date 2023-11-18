@@ -1,2 +1,4 @@
-package com.example.library.controller;public class AdminPage {
+package com.example.library.controller;
+
+public class AdminPageController {
 }
