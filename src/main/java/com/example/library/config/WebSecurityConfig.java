@@ -29,16 +29,12 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home", "/sign-in", "/sign-up", "/static/**", "/img/**", "/test", "/static/img/**").permitAll()
+                        .requestMatchers( "/sign-in", "/sign-up", "/static/**", "/img/**", "/static/img/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(userDetailsService)
                 .formLogin((form) -> form
-                        .loginPage("/user/sign-in")
-                        .permitAll()
-                )
-                .formLogin((form) -> form
-                        .loginPage("/lib/sign-in")
+                        .loginPage("/sign-in")
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll)

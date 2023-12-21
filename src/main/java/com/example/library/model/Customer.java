@@ -1,23 +1,27 @@
 package com.example.library.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "customer_card")
-public class Customer extends User{
-    @Column(name = "customer_email", nullable = false, length = 32)
+public class Customer{
+    @Id
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    @Column(name = "customer_email", nullable = true, length = 32)
     private String email;
 
     @Column(name = "customer_phone", nullable = true, length = 20)
     private String phone;
 
-    @Column(name = "customer_status", nullable = false)
+    @Column(name = "customer_status", nullable = true)
     private Integer status;
 
     @Column(name = "customer_birth_date", nullable = true)

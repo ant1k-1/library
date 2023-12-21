@@ -38,56 +38,20 @@
                                     <input th:field="*{password}" type="password" id="form3Example2" class="form-control" aria-describedby="passwordHelp" required/>
                                     <div id="passwordHelp" class="form-text">Придумайте надежный пароль!</div>
                                 </div>
-                                <!-- Email input -->
-                                <div class="form-outline mb-1">
-                                    <label class="form-label float-start" for="form3Example3">Почта</label>
-                                    <input th:field="*{email}" type="email" id="form3Example3" class="form-control" aria-describedby="emailHelp" placeholder="example@mymail.com" required/>
-                                    <div id="emailHelp" class="form-text">Для связи с вами</div>
-                                </div>
                                 <!-- Type input -->
                                 <div class="d-flex flex-row flex-wrap justify-content-center mt-3">
                                     <div class="mb-3 form-check" style="margin-right: 1rem; flex-basis: 20%">
-                                        <input th:field="*{roles}" class="form-check-input" type="radio" id="ROLE_USER" value="ROLE_USER">
-                                        <label class="form-check-label" for="ROLE_USER">
-                                            Хочу проходить анкеты
+                                        <input th:field="*{roles}" class="form-check-input" type="radio" id="ROLE_CUSTOMER" value="ROLE_CUSTOMER">
+                                        <label class="form-check-label" for="ROLE_CUSTOMER">
+                                            Читатель
                                         </label>
                                     </div>
                                     <div class="mb-3 form-check" style="margin-right: 1rem; flex-basis: 20%">
-                                        <input th:field="*{roles}" class="form-check-input" type="radio" id="ROLE_BUSINESS"  value="ROLE_BUSINESS">
-                                        <label class="form-check-label" for="ROLE_BUSINESS">
-                                            Хочу создавать анкеты
+                                        <input th:field="*{roles}" class="form-check-input" type="radio" id="ROLE_STAFF"  value="ROLE_STAFF">
+                                        <label class="form-check-label" for="ROLE_STAFF">
+                                            Сотрудник
                                         </label>
                                     </div>
-                                </div>
-                                <!-- Name input -->
-                                <div class="form-outline mb-1">
-                                    <label class="form-label float-start" for="form3Example4">Имя</label>
-                                    <input th:field="*{name}" type="text" id="form3Example4" class="form-control" aria-describedby="nameHelp" required/>
-                                    <div id="nameHelp" class="form-text">Ваше настоящее имя</div>
-                                </div>
-                                <!-- Surname input -->
-                                <div class="form-outline mb-1">
-                                    <label class="form-label float-start" for="form3Example5">Фамилия</label>
-                                    <input th:field="*{surname}" type="text" id="form3Example5" class="form-control" aria-describedby="surnameHelp" required/>
-                                    <div id="surnameHelp" class="form-text">Ваша настоящая фамилия</div>
-                                </div>
-                                <!-- Patronymic input -->
-                                <div class="form-outline mb-1">
-                                    <label class="form-label float-start" for="form3Example6">Отчество</label>
-                                    <input th:field="*{patronymic}" type="text" id="form3Example6" class="form-control" aria-describedby="patronymicHelp" required/>
-                                    <div id="patronymicHelp" class="form-text">Ваше настоящее отчество</div>
-                                </div>
-                                <!-- Phone input -->
-                                <div class="form-outline mb-1">
-                                    <label class="form-label float-start" for="form3Example7">Номер телефона</label>
-                                    <input th:field="*{phone}" type="tel" id="form3Example7" class="form-control" aria-describedby="phoneHelp" required pattern="[+]{1}[0-9]{11,14}"/>
-                                    <div id="phoneHelp" class="form-text">Формат +71234567890</div>
-                                </div>
-                                <!-- Date input -->
-                                <div class="form-outline mb-3">
-                                    <label class="form-label float-start" for="form3Example8">Дата рождения</label>
-                                    <input th:field="*{birthday}" type="date" id="form3Example8" class="form-control" aria-describedby="birthdayHelp" required/>
-                                    <div id="birthdayHelp" class="form-text">Ваша дата рождения</div>
                                 </div>
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-primary btn-block mb-3">

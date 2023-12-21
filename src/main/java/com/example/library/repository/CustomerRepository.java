@@ -18,10 +18,11 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
             "c.lastName LIKE %:search% OR " +
             "c.patronymic LIKE %:search%")
     List<Customer> findBySearchFio(@Param("search") String search);
-    Optional<Customer> findByLogin(String login);
+//    Optional<Customer> findByLogin(String login);
     Optional<Customer> findByEmail(String email);
     List<Customer> findAllByStatus(Integer status);
     List<Customer> findAllByBookAmountGreaterThan(Integer amountGreaterThan);
     List<Customer> findAllByBookAmountLessThan(Integer amountLessThan);
     List<Customer> findAllByBookAmountEquals(Integer amountEquals);
+    Optional<Customer> findByUserId(Long userId);
 }

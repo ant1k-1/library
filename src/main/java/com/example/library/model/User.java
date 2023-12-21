@@ -1,5 +1,6 @@
 package com.example.library.model;
 
+import com.example.library.dto.UserDTO;
 import com.example.library.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -10,7 +11,8 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-@MappedSuperclass
+@Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,6 @@ public class User {
     @Column(name = "login", nullable = false, length = 32)
     private String login;
 
-    @Column(name = "password", nullable = false, length = 32)
+    @Column(name = "password", nullable = false)
     private String password;
 }

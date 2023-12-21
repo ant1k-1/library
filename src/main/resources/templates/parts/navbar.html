@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:fragment="navbar-copy">
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #8accff;">
+            <div class="container">
+                <a class="navbar-brand" href="/home">Library///service</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link btn btn-sm btn-outline-light" aria-current="page" href="/home">Каталог</a>
+                    </div>
+                    <div class="navbar-nav">
+                        <a sec:authorize="isAuthenticated() and hasRole('ROLE_CUSTOMER')" class="nav-link btn btn-sm btn-outline-light" href="/reader/books">Мои книги</a>
+                        <a sec:authorize="isAuthenticated() and hasRole('ROLE_STAFF')" class="nav-link btn btn-sm btn-outline-light" href="/lib/users">Читатели</a>
+                        <a sec:authorize="isAuthenticated() and hasRole('ROLE_STAFF')" class="nav-link btn btn-sm btn-outline-light" href="/lib/add">Добавить</a>
+<!--                        <a sec:authorize="isAuthenticated()" class="nav-link btn btn-sm btn-outline-light" href="/profile">Профиль</a>-->
+                        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <input class="btn btn-sm btn-outline-danger nav-link" type="submit" value="Выйти"/>
+                        </form>
+                        <a sec:authorize="!isAuthenticated()" href="/sign-in" class="btn btn-sm btn-outline-light nav-link" role="button">Войти</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>

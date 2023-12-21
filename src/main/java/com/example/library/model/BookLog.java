@@ -1,24 +1,27 @@
 package com.example.library.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "book_log")
 public class BookLog {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+//    @Id
     @Column(name = "ID_card", nullable = false)
     private Long cardId;
 
-    @Id
+//    @Id
     @Column(name = "ID_book", nullable = false)
     private Long bookId;
 
-    @Id
+//    @Id
     @Column(name = "ID_libstaff", nullable = false)
     private Long libstaffId;
 
