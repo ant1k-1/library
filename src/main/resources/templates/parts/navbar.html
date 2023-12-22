@@ -17,8 +17,8 @@
                         <a class="nav-link btn btn-sm btn-outline-light" aria-current="page" href="/home">Каталог</a>
                     </div>
                     <div class="navbar-nav">
-                        <a sec:authorize="isAuthenticated() and hasRole('ROLE_CUSTOMER')" class="nav-link btn btn-sm btn-outline-light" href="/reader/books">Мои книги</a>
-                        <a sec:authorize="isAuthenticated() and hasRole('ROLE_STAFF')" class="nav-link btn btn-sm btn-outline-light" href="/lib/users">Читатели</a>
+                        <a sec:authorize="isAuthenticated() and hasRole('ROLE_CUSTOMER')" class="nav-link btn btn-sm btn-outline-light" href="/booklogs">Мои книги</a>
+                        <a sec:authorize="isAuthenticated() and hasRole('ROLE_STAFF')" class="nav-link btn btn-sm btn-outline-light" href="/booklogs">Журнал</a>
                         <a sec:authorize="isAuthenticated() and hasRole('ROLE_STAFF')" class="nav-link btn btn-sm btn-outline-light" href="/lib/add">Добавить</a>
 <!--                        <a sec:authorize="isAuthenticated()" class="nav-link btn btn-sm btn-outline-light" href="/profile">Профиль</a>-->
                         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">

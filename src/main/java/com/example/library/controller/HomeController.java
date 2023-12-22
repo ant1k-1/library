@@ -142,6 +142,6 @@ public class HomeController {
             @CurrentSecurityContext(expression = "authentication") Authentication auth,
             @PathVariable String id) {
         libraryService.takeBook(Long.parseLong(id), auth.getName());
-        return "redirect:/mybooks";
+        return "redirect:/booklogs";
     }
 }

@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface BookLogRepository extends JpaRepository<BookLog, Long> {
     Optional<BookLog> findByCardIdAndBookIdAndLibstaffId(Long cardId, Long bookId, Long libstaffid);
     List<BookLog> findByStatus(Integer status);
+    List<BookLog> findAllByCardId(Long id);
 }

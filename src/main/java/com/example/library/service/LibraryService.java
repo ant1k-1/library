@@ -1,9 +1,6 @@
 package com.example.library.service;
 
-import com.example.library.model.Author;
-import com.example.library.model.Book;
-import com.example.library.model.Country;
-import com.example.library.model.Publishment;
+import com.example.library.model.*;
 import com.example.library.repository.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -11,6 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -68,7 +68,21 @@ public class LibraryService {
     }
 
     public void takeBook(Long id, String username){
-
+        User user = userRepository.findByLogin(username).get();
+        Book book = bookRepository.findById(id).get();
+        if (book.getAmount()==0) {
+            return;
+        }
+        book.setAmount(book.getAmount() - 1);
+        bookRepository.save(book);
+        BookLog bookLog = new BookLog();
+        bookLog.setStatus(0);
+        bookLog.setBookId(id);
+        bookLog.setCardId(user.getId());
+        bookLog.setLibstaffId(-1L);
+        bookLog.setDateFrom(Date.valueOf(LocalDate.now()));
+        bookLog.setDateUntil(Date.valueOf(LocalDate.now().plusMonths(6)));
+        bookLogRepository.save(bookLog);
     }
 
     public void addBook(Map<String, String> form){
@@ -144,6 +158,31 @@ public class LibraryService {
         System.out.println(form);
     }
 
+    public Page<BookLog> getAllPaginatedBookLogs(Pageable pageable, String username) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<BookLog> bookLogs;
+
+        if (username.isEmpty()) {
+             bookLogs = bookLogRepository.findAll()
+                    .stream().sorted(Comparator.comparingLong(BookLog::getStatus)).toList();
+        } else {
+            User user = userRepository.findByLogin(username).get();
+            bookLogs = bookLogRepository.findAllByCardId(user.getId())
+                    .stream().sorted(Comparator.comparingLong(BookLog::getStatus)).toList();
+        }
+
+        List<BookLog> list;
+        if (bookLogs.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, bookLogs.size());
+            list = bookLogs.subList(startItem, toIndex);
+        }
+        return new PageImpl<BookLog>(list, PageRequest.of(currentPage, pageSize), bookLogs.size());
+    }
+
 
     public Page<Book> getAllPaginatedBooks(Pageable pageable) {
         int pageSize = pageable.getPageSize();
@@ -207,5 +246,20 @@ public class LibraryService {
             list = countries.subList(startItem, toIndex);
         }
         return new PageImpl<Country>(list, PageRequest.of(currentPage, pageSize), countries.size());
+    }
+
+    public void takeback(Long id){
+        BookLog bookLog = bookLogRepository.findById(id).get();
+        bookLog.setStatus(2);
+        Book book = bookRepository.findById(bookLog.getBookId()).get();
+        book.setAmount(book.getAmount() + 1);
+        bookRepository.save(book);
+        bookLogRepository.save(bookLog);
+    }
+
+    public void giveBook(Long id){
+        BookLog bookLog = bookLogRepository.findById(id).get();
+        bookLog.setStatus(1);
+        bookLogRepository.save(bookLog);
     }
 }
