@@ -113,6 +113,12 @@ public class LibraryService {
         } else if (!publishmentRepository.existsById(Long.parseLong(form.get("publishmentId")))) {
             return;
         }
+        author = authorRepository.findById(Long.parseLong(form.get("authorId"))).get();
+        author.setBookAmount(author.getBookAmount() + 1);
+        authorRepository.save(author);
+        publishment = publishmentRepository.findById(Long.parseLong(form.get("publishmentId"))).get();
+        publishment.setBookAmount(publishment.getBookAmount()+1);
+        publishmentRepository.save(publishment);
         Book book = new Book();
         book.setTitle(form.get("bookTitle"));
         book.setYear(Integer.parseInt(form.get("bookYear")));
@@ -204,8 +210,11 @@ public class LibraryService {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
-        List<Author> authors = authorRepository.findAll()
+        List<Author> authors;
+
+        authors = authorRepository.findAll()
                 .stream().sorted(Comparator.comparingLong(Author::getId)).toList();
+
         List<Author> list;
         if (authors.size() < startItem) {
             list = Collections.emptyList();

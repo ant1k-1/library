@@ -40,7 +40,7 @@ public class ReaderController {
             @RequestParam("size") Optional<Integer> size
     ) {
         int currentPage = page.orElse(1);
-        int pageSize = size.orElse(5);
+        int pageSize = size.orElse(3);
         Page<BookLog> bookLogPage;
         if (auth.getAuthorities().contains(Role.ROLE_CUSTOMER)) {
             bookLogPage = libraryService.getAllPaginatedBookLogs(PageRequest.of(currentPage - 1, pageSize), auth.getName());

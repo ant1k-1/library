@@ -54,7 +54,7 @@ public class HomeController {
             @PathVariable("type") Optional<String> type
     ) {
         int currentPage = page.orElse(1);
-        int pageSize = size.orElse(5);
+        int pageSize = size.orElse(3);
         switch (type.orElse("books")) {
             case "books" -> {
                 Page<Book> bookPage = libraryService.getAllPaginatedBooks(PageRequest.of(currentPage - 1, pageSize));
