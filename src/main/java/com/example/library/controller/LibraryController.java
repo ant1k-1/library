@@ -50,7 +50,7 @@ public class LibraryController {
         libraryService.addAuthor(authorData);
         return "redirect:/authors";
     }
-    // bvg1996@mail.ru
+
     @PostMapping("/addPublishment")
     public String addPublishment(
             @RequestParam Map<String, String> publishmentData
